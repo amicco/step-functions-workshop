@@ -30,7 +30,13 @@ serverless create --template-url https://github.com/gabehollombe-aws/step-functi
 # Install dependencies
 npm init --yes
 npm install --save serverless-cf-vars uuid
-    
+
+# note: if (node --version == 10.x) then add libraries via AWS Lambda Layers OR via package/include
+# adding AWS Lambda Layer
+mkdir workshop-dir/layer/nodejs
+cd workshop-dir/layer/nodejs
+npm init --yes
+npm install --save serverless-cf-vars uuid
 ```
 
 ➡️ Step 2. Use the Serverless Framework command to deploy our Lambda functions and Dynamo DB table. 

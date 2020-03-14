@@ -16,6 +16,8 @@ functions:
   SubmitApplication:
     name: ${self:service}__account_applications__submit__${self:provider.stage}
     handler: account-applications/submit.handler
+    layers:
+      - {Ref: CommonLibsLambdaLayer}
     environment:
       REGION: ${self:provider.region}
       ACCOUNTS_TABLE_NAME: ${self:custom.applicationsTable}
@@ -25,6 +27,8 @@ functions:
   FlagApplication:
     name: ${self:service}__account_applications__flag__${self:provider.stage}
     handler: account-applications/flag.handler
+    layers:
+      - {Ref: CommonLibsLambdaLayer}
     environment:
       REGION: ${self:provider.region}
       ACCOUNTS_TABLE_NAME: ${self:custom.applicationsTable}
@@ -33,6 +37,8 @@ functions:
   ReviewApplication:
     name: ${self:service}__account_applications__review__${self:provider.stage}
     handler: account-applications/review.handler
+    layers:
+      - {Ref: CommonLibsLambdaLayer}
     environment:
       REGION: ${self:provider.region}
       ACCOUNTS_TABLE_NAME: ${self:custom.applicationsTable}
@@ -41,6 +47,8 @@ functions:
   FindApplications:
     name: ${self:service}__account_applications__find__${self:provider.stage}
     handler: account-applications/find.handler
+    layers:
+      - {Ref: CommonLibsLambdaLayer}
     environment:
       REGION: ${self:provider.region}
       ACCOUNTS_TABLE_NAME: ${self:custom.applicationsTable}
@@ -49,6 +57,8 @@ functions:
   RejectApplication:
     name: ${self:service}__account_applications__reject__${self:provider.stage}
     handler: account-applications/reject.handler
+    layers:
+      - {Ref: CommonLibsLambdaLayer}
     environment:
       REGION: ${self:provider.region}
       ACCOUNTS_TABLE_NAME: ${self:custom.applicationsTable}
@@ -57,6 +67,8 @@ functions:
   ApproveApplication:
     name: ${self:service}__account_applications__approve__${self:provider.stage}
     handler: account-applications/approve.handler
+    layers:
+      - {Ref: CommonLibsLambdaLayer}
     environment:
       REGION: ${self:provider.region}
       ACCOUNTS_TABLE_NAME: ${self:custom.applicationsTable}
@@ -428,3 +440,8 @@ resources:
               rejectApplicationLambdaArn: !GetAtt [RejectApplicationLambdaFunction, Arn],
               approveApplicationLambdaArn: !GetAtt [ApproveApplicationLambdaFunction, Arn],
             }
+
+layers:
+  commonLibs:
+    name: ${self:service}-${self:provider.stage}-commonlibs
+    path: layer

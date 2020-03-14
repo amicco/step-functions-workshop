@@ -2,6 +2,12 @@
 
 ## Building the workshop static site with Hugo
 
+#### 0. tested with Node.js v12 (issue with Node.js v10)
+On Cloud9:
+`nvm current`
+`nvm install lts/erbium`
+`nvm current`
+
 #### 1. Install Hugo:
 On a mac:
 
